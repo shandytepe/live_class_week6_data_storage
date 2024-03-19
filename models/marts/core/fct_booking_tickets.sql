@@ -72,7 +72,7 @@ final_fct_booking_tickets as (
         da1.sk_airport_code as departure_airport,
         da2.sk_airport_code as arrival_airport,
         sf.status,
-        dac.sk_aircraft_code,
+        dac.sk_aircraft_code as aircraft_code,
         dd7.date_id as actual_departure_date_local, 
         dd8.date_id as actual_departure_date_utc,
         dt7.time_id as actual_departure_time_local,  
