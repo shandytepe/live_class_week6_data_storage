@@ -1,6 +1,7 @@
 with stg_dim_passengers as (
     select 
         passenger_id as nk_passenger_id,
+        passenger_name,
         contact_data->>'phone' as phone,
         contact_data->>'email' as email
     from {{ ref("stg_pacflight__tickets") }}
