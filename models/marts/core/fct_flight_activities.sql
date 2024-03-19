@@ -25,6 +25,7 @@ dim_aircrafts as (
 
 final_fct_flight_activities as (
     select 
+        {{ dbt_utils.generate_surrogate_key( ["sf.flight_id"] ) }} as sk_flight_id,
         sf.flight_id as nk_flight_id,
         sf.flight_no,
         dd1.date_id as scheduled_departure_date_local,
@@ -45,7 +46,9 @@ final_fct_flight_activities as (
         dt6.time_id as actual_arrival_time_utc,
         (sf.actual_departure - sf.scheduled_departure) as delay_departure,
         (sf.actual_arrival - sf.scheduled_arrival) as delay_arrival,
-        (sf.actual_arrival - sf.actual_departure) as travel_time
+        (sf.actual_arrival - sf.actual_departure) as travel_time,
+        {{ dbt_date.now() }} as created_at,
+        {{ dbt_date.now() }} as updated_at
     from stg_flights sf
     join dim_dates dd1
         on dd1.date_actual = DATE(sf.scheduled_departure)
