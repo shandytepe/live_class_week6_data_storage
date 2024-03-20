@@ -5,6 +5,9 @@
 - Lanjutan case dari Live Class Week 3 Data Storage
 - Untuk detail dokumentasi dari data, bisa cek di link [berikut](https://docs.google.com/document/d/1cVKuIRFDsnwdXqMB6id-9YUVIhzsA1agR36rqr0w_K0/edit?usp=sharing)
 - Untuk Docker database Pacflight terdapat di repository https://github.com/ihdarsyd/pacflight-data
+- Terdapat static file di `seeds` untuk generate table `dim_dates` dan `dim_times`. Karena di dbt tidak bisa membuat table baru
+- Alasan menggunakan seeds adalah agar menyesuaikan dengan workflow yang sudah dilakukan di Live Class Week 3
+- Tetapi karena menggunakan `csv`, maka ada beberapa kolom yang tidak sesuai dengan tipe data nya seperti di `dim_times`. Sehingga harus convert menggunakan `::time`
 
 ### **How to Run Docker Database**
 ---
@@ -26,7 +29,8 @@
 2. Config koneksi sesuai dengan data source
 3. Run `dbt debug` untuk mengecek koneksi dengan data source
 4. Run `dbt deps` untuk menginstall dependensi yang dibutuhkan
-5. Run `dbt run` untuk menjalankan proses transformasi dengan menggunakan dbt
+5. Run `dbt seeds` untuk generate static table dengan menggunakan csv file 
+6. Run `dbt run` untuk menjalankan proses transformasi dengan menggunakan dbt
 
 ### **Tools**
 ---
