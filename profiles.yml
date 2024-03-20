@@ -1,0 +1,12 @@
+pacflight_dbt:
+  outputs:
+    dev:
+      dbname: pacflight
+      host: localhost
+      pass: mypassword
+      port: 5434
+      schema: pacflight_dbt
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev
