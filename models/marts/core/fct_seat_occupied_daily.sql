@@ -50,7 +50,7 @@ cnt_total_seats as (
 
 final_fct_seat_occupied_daily as (
     select 
-        {{ dbt_utils.generate_surrogate_key( ["sf.flight_id", "sf.flight_no"] ) }},
+        {{ dbt_utils.generate_surrogate_key( ["sf.flight_id", "sf.flight_no"] ) }} as sk_seat_occupied_daily,
         dd.date_id as date_flight,
         sf.flight_id as nk_flight_id,
         sf.flight_no,
